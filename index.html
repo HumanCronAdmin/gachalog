@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-H1N5PR9Y0H"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-H1N5PR9Y0H');</script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GachaLog - Japanese Toy Collection Tracker for Notion</title>
+<meta name="description" content="Track your gashapon, capsule toys, figures & ichiban kuji collection in Notion.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="capsules-bg" aria-hidden="true"></div>
+
+<header>
+ <div class="machine" aria-hidden="true">
+  <div class="machine-top"></div>
+  <div class="machine-globe">
+   <div class="cap c1"></div><div class="cap c2"></div><div class="cap c3"></div>
+   <div class="cap c4"></div><div class="cap c5"></div><div class="cap c6"></div>
+  </div>
+  <div class="machine-body"></div>
+  <div class="machine-slot"></div>
+ </div>
+ <h1>GachaLog</h1>
+ <p class="tagline">Your Japanese Toy Collection,<br>Beautifully Organized in Notion</p>
+ <p class="sub">Gashapon. Figures. Ichiban Kuji. Blind Boxes. All in one place.</p>
+</header>
+
+<section class="shelf">
+ <h2>Your Collection, Your Catalog</h2>
+ <div class="shelf-row" id="shelfItems"></div>
+ <p class="shelf-hint">Every capsule tells a story. GachaLog helps you remember them all.</p>
+</section>
+
+<section class="features">
+ <h2>Built for Collectors Who Care</h2>
+ <div class="cards" id="featureCards"></div>
+</section>
+
+<section class="journey">
+ <h2>The Collector's Journey</h2>
+ <div class="timeline" id="timeline"></div>
+</section>
+
+<section class="cta">
+ <div class="cta-capsule" aria-hidden="true"></div>
+ <h2>Ready to Organize Your Treasure?</h2>
+ <p>One-time purchase. Free updates forever. Duplicate to Notion in 10 seconds.</p>
+ <div class="price">$12</div>
+ <p class="price-note">Less than 3 gashapon turns</p>
+ <a href="#" class="btn">Get GachaLog Now</a>
+</section>
+
+<footer>&copy; 2026 GachaLog &mdash; Built for collectors, by collectors.</footer>
+
+<script>
+const COLORS = ['#ff6b6b','#ffd93d','#6bcb77','#4d96ff','#ff922b','#cc5de8','#20c997','#f06595'];
+const bgEl = document.querySelector('.capsules-bg');
+for(let i=0;i<18;i++){
+ const d=document.createElement('div');d.className='float-cap';
+ const s=20+Math.random()*30, x=Math.random()*100, dur=8+Math.random()*12, del=Math.random()*-15;
+ Object.assign(d.style,{width:s+'px',height:s*1.2+'px',left:x+'%',background:COLORS[i%8],
+  animationDuration:dur+'s',animationDelay:del+'s',opacity:.15+Math.random()*.15});
+ bgEl.appendChild(d);
+}
+const items=[
+ {name:'Shiba Chef',series:'Animal Kitchen',color:'#ffd93d',owned:true},
+ {name:'Cat Barista',series:'Animal Kitchen',color:'#ff922b',owned:true},
+ {name:'Penguin Sushi',series:'Animal Kitchen',color:'#4d96ff',owned:false},
+ {name:'Mini Ramen',series:'Food Miniature',color:'#ff6b6b',owned:true},
+ {name:'Tiny Bento',series:'Food Miniature',color:'#6bcb77',owned:true},
+ {name:'Mochi Bear',series:'Sweet Friends',color:'#cc5de8',owned:false},
+ {name:'Donut Bunny',series:'Sweet Friends',color:'#f06595',owned:true},
+ {name:'Takoyaki Cat',series:'Street Food Pals',color:'#20c997',owned:true},
+];
+const shelf=document.getElementById('shelfItems');
+items.forEach(it=>{
+ const d=document.createElement('div');d.className='shelf-item'+(it.owned?'':' wanted');
+ d.innerHTML=`<div class="item-cap" style="background:${it.color}"><div class="cap-shine"></div></div>
+  <span class="item-name">${it.name}</span><span class="item-series">${it.series}</span>
+  <span class="item-status">${it.owned?'Owned':'Wanted'}</span>`;
+ shelf.appendChild(d);
+});
+const feats=[
+ {icon:'&#x1F50D;',title:'Series Tracker',desc:'See completion at a glance. That missing piece? You\'ll find it.'},
+ {icon:'&#x2B50;',title:'Wishlist',desc:'Never forget what you\'re hunting for. Prioritize your next find.'},
+ {icon:'&#x1F4CA;',title:'Collection Stats',desc:'Total spent, items owned, rarest finds. Know your collection inside out.'},
+ {icon:'&#x1F4F7;',title:'Photo Gallery',desc:'Turn your database into a beautiful visual catalog you\'ll love browsing.'},
+ {icon:'&#x1F504;',title:'Trade Board',desc:'Track duplicates. Find trades. Complete your sets faster.'},
+ {icon:'&#x1F30F;',title:'EN / JP Ready',desc:'Every field works in both languages. Made for collectors worldwide.'},
+];
+const fc=document.getElementById('featureCards');
+feats.forEach((f,i)=>{
+ const d=document.createElement('div');d.className='card';d.style.animationDelay=i*.08+'s';
+ d.innerHTML=`<span class="card-icon">${f.icon}</span><h3>${f.title}</h3><p>${f.desc}</p>`;
+ fc.appendChild(d);
+});
+const steps=[
+ {icon:'&#x1F3B0;',text:'Turn the handle. Get a capsule.'},
+ {icon:'&#x1F4F1;',text:'Open GachaLog. Log your find.'},
+ {icon:'&#x1F4DA;',text:'Watch your collection grow.'},
+ {icon:'&#x2728;',text:'Complete the series. Feel the joy.'},
+];
+const tl=document.getElementById('timeline');
+steps.forEach((s,i)=>{
+ const d=document.createElement('div');d.className='step';
+ d.innerHTML=`<div class="step-num">${s.icon}</div><p>${s.text}</p>`;
+ tl.appendChild(d);
+});
+</script>
+</body>
+</html>
